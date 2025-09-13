@@ -295,13 +295,32 @@
             createDropdown();
             addPreviewButtons();
 
-            // re-add preview buttons when new content loads
+            // re-add preview buttons and dropdown when new content loads
             const observer = new MutationObserver(function(mutations) {
+                let shouldUpdate = false;
+
                 mutations.forEach(function(mutation) {
                     if (mutation.type === 'childList') {
-                        addPreviewButtons();
+                        // check if new transaction containers were added
+                        for (let node of mutation.addedNodes) {
+                            if (node.nodeType === Node.ELEMENT_NODE) {
+                                if (node.classList && node.classList.contains('apx-transactions-line-item-component-container')) {
+                                    shouldUpdate = true;
+                                }
+                                // also check if any child contains transaction containers
+                                if (node.querySelector && node.querySelector('.apx-transactions-line-item-component-container')) {
+                                    shouldUpdate = true;
+                                }
+                            }
+                        }
                     }
                 });
+
+                if (shouldUpdate) {
+                    // always recreate dropdown and add preview buttons when content changes
+                    createDropdown();
+                    addPreviewButtons();
+                }
             });
 
             observer.observe(document.body, {
