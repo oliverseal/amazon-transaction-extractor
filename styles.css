@@ -1,0 +1,36 @@
+/* Amazon Transaction Extractor Styles */
+/* grug make styles simple but work good */
+
+#amazon-transaction-filter {
+    font-family: Arial, sans-serif;
+}
+
+#amazon-transaction-filter select {
+    min-width: 200px;
+}
+
+.preview-button:hover {
+    background: #005bb5 !important;
+}
+
+.preview-button:active {
+    background: #004494 !important;
+}
+
+#order-preview-popup {
+    font-family: Arial, sans-serif;
+}
+
+#order-preview-popup h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#order-preview-popup button {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#order-preview-popup button:hover {
+    background: #cc3333 !important;
+}
